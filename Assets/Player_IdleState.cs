@@ -11,8 +11,7 @@ public class Player_IdelState : EntityState
     public override void Update()
     {
         base.Update();
-        // Example condition to switch to move state
-        if (Input.GetKeyDown(KeyCode.F))
+          if (player.moveInput.x != 0)
         {
             stateMachine.ChangeState(player.moveState);
         }

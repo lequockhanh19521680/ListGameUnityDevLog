@@ -6,28 +6,28 @@ public abstract class EntityState
 {
     protected Player player;
     protected StateMachine stateMachine;
-    protected String stateName;
+    protected String aniBoolName;
 
-    public EntityState(Player player, StateMachine stateMachine, string stateName)
+    public EntityState(Player player, StateMachine stateMachine, string aniBoolName)
     {
         this.player = player;
         this.stateMachine = stateMachine;
-        this.stateName = stateName;
+        this.aniBoolName = aniBoolName;
     }
 
     public virtual void Enter()
     {
-        Debug.Log("Entering State: " + stateName);
+        player.anim.SetBool(aniBoolName, true);
     }
+
 
     public virtual void Update()
     {
-        Debug.Log("Updating State: " + stateName);
+        Debug.Log("Updating State: " + aniBoolName);
     }   
     public virtual void Exit()
     {
-        Debug.Log("Exiting State: " + stateName);
+        player.anim.SetBool(aniBoolName, false);
+
     }
-
-
 }

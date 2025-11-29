@@ -2,23 +2,24 @@ using UnityEngine;
 
 public class StateMachine 
 {
-   public EntityState CurrentState { get; private set; }
+    public EntityState currentState { get; private set; }
 
-   public void Initialize(EntityState startingState)
-   {
-       CurrentState = startingState;
-       CurrentState.Enter();
-   }
 
-   public void ChangeState(EntityState newState)
-   {
-       CurrentState.Exit();
-       CurrentState = newState;
-       CurrentState.Enter();
-   }
+    public void Initialize(EntityState startState)
+    {
+        currentState = startState;
+        currentState.Enter();
+    }
 
-   public void UpdateActiveState()
-   {
-       CurrentState.Update();
-   }
+    public void ChangeState(EntityState newState)
+    {
+        currentState.Exit();
+        currentState = newState;
+        currentState.Enter();
+    }
+
+    public void UpdateActiveState()
+    {
+        currentState.Update();        
+    }
 }

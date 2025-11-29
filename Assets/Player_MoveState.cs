@@ -1,25 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using UnityEngine;
 
-
-public class Player_MoveState : EntityState
+public class Player_MoveState : Player_GroundedState
 {
     public Player_MoveState(Player player, StateMachine stateMachine, string stateName) : base(player, stateMachine, stateName)
     {
-        
     }
 
     public override void Update()
     {
         base.Update();
-        //if idle => state idle from input
-        if (player.moveInput.x == 0)
-        {
-            stateMachine.ChangeState(player.idleState);
-        }
-        
 
+        if (player.moveInput.x == 0  || player.wallDetected)
+            stateMachine.ChangeState(player.idleState);
+
+
+        player.SetVelocity(player.moveInput.x * player.moveSpeed, rb.linearVelocity.y);
     }
 }
